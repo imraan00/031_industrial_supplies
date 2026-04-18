@@ -211,25 +211,24 @@
   .hero-title span { color: var(--orange); display: block; text-shadow: 0 0 30px var(--orange-glow), 0 0 60px var(--orange-glow-soft); }
   .hero-slogan {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2rem, 2vw, 1.5rem);
-    letter-spacing: 2px;
-    color: rgb(255, 255, 255);
+    font-size: clamp(1.1rem, 2.2vw, 2rem);
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.85);
     text-transform: uppercase;
     text-decoration: line-through;
     text-decoration-color: #000000;
-    text-decoration-thickness: 1.5px;
-    margin-bottom: 20px;
-    margin-top: -10px;
-    position: absolute;
-    left: 130%; /* Pushes it to the far right. Adjust the percentage or use pixels (e.g., 50px) as needed */
-    top: 50%; /* Centers it vertically. Adjust this percentage to move it up or down */
-    transform: translate(-50%,); /* Ensures perfectly centered vertical alignment based on the 'top' property */
-    width: max-content; /* Prevents the text from wrapping awkwardly into a narrow column */
-    
-    /* FIX FOR THE CUT-OFF TEXT: */
-    line-height: normal; 
-    overflow: visible; 
+    text-decoration-thickness: 2px;
+    line-height: 1.2;
+    overflow: visible;
     height: auto;
+    /* Positioned on right side of hero on large screens */
+    position: absolute;
+    left: 115%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: max-content;
+    /*max-width: 40%;*/
+    text-align: right;
   }
   .hero-slogan strong { font-style: italic; }
 
@@ -946,10 +945,10 @@
   .product-card-body { padding: 18px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
   .product-card-code {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.62rem;
+    font-size: 0.65rem;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: #555;
+    color: #aaa;
     margin-bottom: 2px;
   }
   .product-card-cat {
@@ -981,16 +980,16 @@
   .product-card-meta-item { display: flex; flex-direction: column; gap: 1px; }
   .product-card-meta-label {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.6rem;
+    font-size: 0.62rem;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: #555;
+    color: var(--orange);
   }
   .product-card-meta-val {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.82rem;
-    color: #bbb;
-    font-weight: 600;
+    font-size: 0.9rem;
+    color: #f0f0f0;
+    font-weight: 700;
   }
   .product-card-footer {
     display: flex;
@@ -1512,12 +1511,191 @@
     .contact-info, .contact-form-area { padding: 40px 24px; }
     .whatsapp-cta { margin: 24px; padding: 30px 24px; }
   .hero-slogan {
-        position: static; /* Removes the absolute positioning */
-        transform: none; /* Removes the vertical centering */
-        width: 100%; /* Allows it to wrap naturally */
-        margin-top: 15px; /* Adds space below the big heading */
-        margin-bottom: 20px; /* Adds space before the paragraph text */
+      position: static;
+      transform: none;
+      width: 100%;
+      max-width: 100%;
+      text-align: left;
+      margin-top: 12px;
+      margin-bottom: 16px;
+      font-size: 1rem;
     }
+  }
+
+  /* ===== RESPONSIVE: All Screen Sizes ===== */
+
+  /* Large desktops (1400px+) */
+  @media (min-width: 1400px) {
+    .hero-content { max-width: 750px; }
+    .hero-slogan { font-size: 2.2rem; }
+    .hero-title { font-size: 7rem; }
+    .product-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+  }
+
+  /* Medium-large (1200px - 1400px) */
+  @media (min-width: 1200px) and (max-width: 1399px) {
+    .hero-slogan { font-size: 1.8rem; max-width: 38%; right: 5%; }
+    .product-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+  }
+
+  /* Tablets landscape / small desktop (992px - 1199px) */
+  @media (min-width: 992px) and (max-width: 1199px) {
+    nav { padding: 0 24px; }
+    .hero-content { padding: 50px 40px 50px 60px; }
+    .hero-slogan { font-size: 1.4rem; max-width: 36%; right: 4%; }
+    .about-hero { padding: 60px 40px; }
+    .about-grid { grid-template-columns: 1fr 1fr; }
+    .product-list-section { padding: 0 40px 60px; }
+    .home-cats, .home-sale { padding: 50px 40px; }
+    .sale-flyers { padding: 40px 40px; }
+    .flyers-grid { grid-template-columns: 1fr 1fr; }
+    .contact-hero { padding: 60px 40px; }
+    .contact-grid { grid-template-columns: 1fr 1fr; }
+    .values-strip { padding: 50px 40px; }
+    .footer-banner { padding: 24px 40px; }
+  }
+
+  /* Tablets portrait (768px - 991px) */
+  @media (min-width: 768px) and (max-width: 991px) {
+    nav { padding: 0 20px; height: 100px; }
+    .nav-logo img { height: 90px; width: 90px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .hero { min-height: 70vh; }
+    .hero-content { padding: 40px 24px 40px 36px; max-width: 60%; }
+    .hero-title { font-size: 4rem; }
+    .hero-slogan { font-size: 1.1rem; max-width: 35%; right: 3%; }
+    .stats-strip { padding: 20px 24px; gap: 20px; }
+    .stat-num { font-size: 1.8rem; }
+    .home-cats, .home-sale { padding: 40px 24px; }
+    .cat-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+    .about-hero { padding: 40px 24px; flex-direction: column; }
+    .about-logo { width: 130px; height: 130px; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-block { padding: 30px 24px; }
+    .values-strip { padding: 40px 24px; }
+    .values-grid { grid-template-columns: repeat(2, 1fr); }
+    .products-hero, .contact-hero { padding: 40px 24px; }
+    .sale-flyers { padding: 30px 24px; }
+    .flyers-grid { grid-template-columns: 1fr; }
+    .product-list-section { padding: 0 24px 60px; }
+    .product-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+    .cat-tabs { gap: 4px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .contact-info, .contact-form-area { padding: 30px 24px; }
+    .whatsapp-cta { margin: 24px; padding: 24px; }
+    .footer-banner { padding: 20px 24px; gap: 20px; }
+    .footer-gear-svg { width: 100px; height: 84px; }
+    .footer-tagline { font-size: 1rem; }
+    .footer-nav-row { padding: 14px 20px; }
+  }
+
+  /* Mobile large (480px - 767px) */
+  @media (min-width: 480px) and (max-width: 767px) {
+    nav { padding: 0 16px; height: 80px; }
+    .nav-logo img { height: 70px; width: 70px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .hero { min-height: auto; padding-bottom: 40px; }
+    .hero-content { padding: 30px 20px; max-width: 100%; }
+    .hero-slogan { position: static; transform: none; max-width: 100%; text-align: left; font-size: 0.9rem; margin-top: 8px; margin-bottom: 16px; }
+    .hero-title { font-size: 3rem; }
+    .hero-stripe { display: none; }
+    .stats-strip { padding: 16px; gap: 12px; flex-wrap: wrap; }
+    .stat-divider { display: none; }
+    .home-cats, .home-sale { padding: 30px 16px; }
+    .cat-grid { grid-template-columns: repeat(2, 1fr); gap: 2px; }
+    .about-hero { padding: 30px 16px; flex-direction: column; gap: 20px; }
+    .about-logo { width: 100px; height: 100px; }
+    .about-grid { grid-template-columns: 1fr; gap: 2px; }
+    .about-block { padding: 24px 16px; }
+    .values-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .values-strip { padding: 30px 16px; }
+    .products-hero { padding: 30px 16px; }
+    .sale-flyers { padding: 20px 16px; }
+    .flyers-grid { grid-template-columns: 1fr; }
+    .product-list-section { padding: 0 16px 40px; }
+    .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .cat-section-header { font-size: 1.1rem; padding: 10px 14px; }
+    .search-filter-row { flex-wrap: wrap; gap: 8px; }
+    .contact-hero { padding: 30px 16px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .contact-info, .contact-form-area { padding: 24px 16px; }
+    .whatsapp-cta { margin: 16px; padding: 20px 16px; flex-direction: column; }
+    .footer-banner { padding: 16px; flex-direction: column; gap: 16px; }
+    .footer-banner-divider { display: none; }
+    .footer-gear-svg { width: 80px; height: 68px; }
+    .footer-nav-row { padding: 12px 16px; flex-direction: column; gap: 10px; }
+    .footer-links { flex-wrap: wrap; gap: 12px; }
+    .product-card-name { font-size: 1.1rem; }
+    .product-card-img { height: 160px; }
+    .filter-panel-inner { flex-direction: column; gap: 14px; }
+    .cat-tabs { gap: 4px; }
+    .cat-tab { font-size: 0.68rem; padding: 5px 9px; }
+  }
+
+  /* Mobile small (< 480px) */
+  @media (max-width: 479px) {
+    nav { padding: 0 12px; height: 70px; }
+    .nav-logo img { height: 58px; width: 58px; }
+    .nav-brand { font-size: 1rem; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .hero { min-height: auto; padding-bottom: 30px; }
+    .hero-content { padding: 24px 16px; max-width: 100%; }
+    .hero-slogan { position: static; transform: none; max-width: 100%; text-align: left; font-size: 0.78rem; margin-top: 6px; margin-bottom: 12px; letter-spacing: 1.5px; }
+    .hero-title { font-size: 2.5rem; }
+    .hero-stripe { display: none; }
+    .btn-primary, .btn-outline { font-size: 0.75rem; padding: 10px 18px; }
+    .btn-outline { margin-left: 8px; }
+    .stats-strip { padding: 14px; gap: 10px; flex-wrap: wrap; justify-content: center; }
+    .stat-divider { display: none; }
+    .stat-num { font-size: 1.5rem; }
+    .section-title { font-size: 2rem; }
+    .home-cats, .home-sale { padding: 24px 12px; }
+    .cat-grid { grid-template-columns: repeat(2, 1fr); gap: 2px; }
+    .cat-card { padding: 20px 14px; gap: 8px; }
+    .cat-icon { width: 40px; height: 40px; }
+    .cat-icon svg { width: 20px; height: 20px; }
+    .cat-name { font-size: 0.85rem; }
+    .about-hero { padding: 24px 12px; flex-direction: column; gap: 16px; }
+    .about-logo { width: 80px; height: 80px; }
+    .about-intro h1 { font-size: 2rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-block { padding: 20px 12px; }
+    .about-block h3 { font-size: 1.3rem; }
+    .values-grid { grid-template-columns: 1fr; gap: 10px; }
+    .values-strip { padding: 24px 12px; }
+    .products-hero { padding: 24px 12px; }
+    .products-hero h1 { font-size: 2.5rem; }
+    .sale-flyers { padding: 16px 12px; }
+    .flyers-grid { grid-template-columns: 1fr; }
+    .product-list-section { padding: 0 12px 30px; }
+    .product-grid { grid-template-columns: 1fr; gap: 12px; }
+    .product-card-name { font-size: 1rem; letter-spacing: 1px; }
+    .product-card-img { height: 180px; }
+    .product-card-price { font-size: 1.2rem; }
+    .cat-section-header { font-size: 1rem; padding: 10px 12px; }
+    .search-filter-row { flex-direction: column; gap: 8px; }
+    .search-wrap { min-width: 0; }
+    .cat-tabs { gap: 3px; }
+    .cat-tab { font-size: 0.65rem; padding: 5px 8px; }
+    .contact-hero { padding: 24px 12px; }
+    .contact-hero h1 { font-size: 2.5rem; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .contact-info, .contact-form-area { padding: 20px 12px; }
+    .whatsapp-cta { margin: 12px; padding: 16px 12px; flex-direction: column; gap: 14px; }
+    .wa-text h3 { font-size: 1.4rem; }
+    .footer-banner { padding: 12px; flex-direction: column; gap: 12px; }
+    .footer-banner-divider { display: none; }
+    .footer-gear-svg { width: 70px; height: 58px; }
+    .footer-tagline { font-size: 0.8rem; white-space: normal; }
+    .footer-nav-row { padding: 10px 12px; flex-direction: column; gap: 8px; }
+    .footer-links { flex-wrap: wrap; gap: 10px; }
+    .footer-copy { font-size: 0.65rem; }
+    .filter-panel-inner { flex-direction: column; gap: 12px; padding: 14px 12px; }
+    .size-buttons { gap: 3px; }
+    .price-inputs { flex-wrap: wrap; }
   }
 </style>
 </head>
@@ -1919,7 +2097,7 @@
         </div>
         <div class="product-card-footer">
           <div class="product-card-price">R19.00<small>Per Unit</small></div>
-          <a href="https://wa.me/27714520752?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20the%20Reflective%20Mesh%20Maxi%20Bib" target="_blank" class="btn-enquire">Enquire</a>
+          <button onclick="enquireProduct(this)" class="btn-enquire">Enquire</button>
         </div>
       </div>
 
@@ -1946,7 +2124,7 @@
         </div>
         <div class="product-card-footer">
           <div class="product-card-price">R42.00<small>Per Unit</small></div>
-          <a href="https://wa.me/27714520752?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20the%20Reflective%20Vest" target="_blank" class="btn-enquire">Enquire</a>
+          <button onclick="enquireProduct(this)" class="btn-enquire">Enquire</button>
         </div>
       </div>
 
@@ -1973,7 +2151,7 @@
         </div>
         <div class="product-card-footer">
           <div class="product-card-price">R19.00<small>Per Unit</small></div>
-          <a href="https://wa.me/27714520752?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20the%20Reflective%20Bib%20-%20Adjustable%20Velcro%20Attach%20Government" target="_blank" class="btn-enquire">Enquire</a>
+          <button onclick="enquireProduct(this)" class="btn-enquire">Enquire</button>
         </div>
       </div>
 
@@ -2000,7 +2178,7 @@
         </div>
         <div class="product-card-footer">
           <div class="product-card-price">R42.00<small>Per Unit</small></div>
-          <a href="https://wa.me/27714520752?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20the%20Reflective%20Vest" target="_blank" class="btn-enquire">Enquire</a>
+          <button onclick="enquireProduct(this)" class="btn-enquire">Enquire</button>
         </div>
       </div>
 
@@ -2027,7 +2205,7 @@
         </div>
         <div class="product-card-footer">
           <div class="product-card-price">R42.00<small>Per Unit</small></div>
-          <a href="https://wa.me/27714520752?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20the%20Reflective%20Vest" target="_blank" class="btn-enquire">Enquire</a>
+          <button onclick="enquireProduct(this)" class="btn-enquire">Enquire</button>
         </div>
       </div>
 
@@ -2054,7 +2232,7 @@
         </div>
         <div class="product-card-footer">
           <div class="product-card-price">R42.00<small>Per Unit</small></div>
-          <a href="https://wa.me/27714520752?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20the%20Reflective%20Vest" target="_blank" class="btn-enquire">Enquire</a>
+          <button onclick="enquireProduct(this)" class="btn-enquire">Enquire</button>
         </div>
       </div>
 
@@ -2081,7 +2259,7 @@
         </div>
         <div class="product-card-footer">
           <div class="product-card-price">R42.00<small>Per Unit</small></div>
-          <a href="https://wa.me/27714520752?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20the%20Reflective%20Vest" target="_blank" class="btn-enquire">Enquire</a>
+          <button onclick="enquireProduct(this)" class="btn-enquire">Enquire</button>
         </div>
       </div>
 
@@ -2108,7 +2286,7 @@
         </div>
         <div class="product-card-footer">
           <div class="product-card-price">R42.00<small>Per Unit</small></div>
-          <a href="https://wa.me/27714520752?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20the%20Reflective%20Vest" target="_blank" class="btn-enquire">Enquire</a>
+          <button onclick="enquireProduct(this)" class="btn-enquire">Enquire</button>
         </div>
       </div>
 
@@ -2135,7 +2313,7 @@
         </div>
         <div class="product-card-footer">
           <div class="product-card-price">R42.00<small>Per Unit</small></div>
-          <a href="https://wa.me/27714520752?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20the%20Reflective%20Vest" target="_blank" class="btn-enquire">Enquire</a>
+          <button onclick="enquireProduct(this)" class="btn-enquire">Enquire</button>
         </div>
       </div>
 
@@ -2162,7 +2340,7 @@
         </div>
         <div class="product-card-footer">
           <div class="product-card-price">R42.00<small>Per Unit</small></div>
-          <a href="https://wa.me/27714520752?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20the%20Reflective%20Vest" target="_blank" class="btn-enquire">Enquire</a>
+          <button onclick="enquireProduct(this)" class="btn-enquire">Enquire</button>
         </div>
       </div>
 
@@ -2189,7 +2367,7 @@
         </div>
         <div class="product-card-footer">
           <div class="product-card-price">R42.00<small>Per Unit</small></div>
-          <a href="https://wa.me/27714520752?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20the%20Reflective%20Vest" target="_blank" class="btn-enquire">Enquire</a>
+          <button onclick="enquireProduct(this)" class="btn-enquire">Enquire</button>
         </div>
       </div>
 
@@ -2216,7 +2394,7 @@
         </div>
         <div class="product-card-footer">
           <div class="product-card-price">R42.00<small>Per Unit</small></div>
-          <a href="https://wa.me/27714520752?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20the%20Reflective%20Vest" target="_blank" class="btn-enquire">Enquire</a>
+          <button onclick="enquireProduct(this)" class="btn-enquire">Enquire</button>
         </div>
       </div>
 
@@ -2243,7 +2421,7 @@
         </div>
         <div class="product-card-footer">
           <div class="product-card-price">R42.00<small>Per Unit</small></div>
-          <a href="https://wa.me/27714520752?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20the%20Reflective%20Vest" target="_blank" class="btn-enquire">Enquire</a>
+          <button onclick="enquireProduct(this)" class="btn-enquire">Enquire</button>
         </div>
       </div>
 
@@ -2270,7 +2448,7 @@
         </div>
         <div class="product-card-footer">
           <div class="product-card-price">R42.00<small>Per Unit</small></div>
-          <a href="https://wa.me/27714520752?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20the%20Reflective%20Vest" target="_blank" class="btn-enquire">Enquire</a>
+          <button onclick="enquireProduct(this)" class="btn-enquire">Enquire</button>
         </div>
       </div>
 
@@ -2297,7 +2475,7 @@
         </div>
         <div class="product-card-footer">
           <div class="product-card-price">R42.00<small>Per Unit</small></div>
-          <a href="https://wa.me/27714520752?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20the%20Reflective%20Vest" target="_blank" class="btn-enquire">Enquire</a>
+          <button onclick="enquireProduct(this)" class="btn-enquire">Enquire</button>
         </div>
       </div>
 
@@ -2324,7 +2502,7 @@
         </div>
         <div class="product-card-footer">
           <div class="product-card-price">R42.00<small>Per Unit</small></div>
-          <a href="https://wa.me/27714520752?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20the%20Reflective%20Vest" target="_blank" class="btn-enquire">Enquire</a>
+          <button onclick="enquireProduct(this)" class="btn-enquire">Enquire</button>
         </div>
       </div>
 
@@ -2351,7 +2529,7 @@
         </div>
         <div class="product-card-footer">
           <div class="product-card-price">R42.00<small>Per Unit</small></div>
-          <a href="https://wa.me/27714520752?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20the%20Reflective%20Vest" target="_blank" class="btn-enquire">Enquire</a>
+          <button onclick="enquireProduct(this)" class="btn-enquire">Enquire</button>
         </div>
       </div>
 
@@ -2378,7 +2556,7 @@
         </div>
         <div class="product-card-footer">
           <div class="product-card-price">R42.00<small>Per Unit</small></div>
-          <a href="https://wa.me/27714520752?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20the%20Reflective%20Vest" target="_blank" class="btn-enquire">Enquire</a>
+          <button onclick="enquireProduct(this)" class="btn-enquire">Enquire</button>
         </div>
       </div>
 
@@ -2405,7 +2583,7 @@
         </div>
         <div class="product-card-footer">
           <div class="product-card-price">R42.00<small>Per Unit</small></div>
-          <a href="https://wa.me/27714520752?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20the%20Reflective%20Vest" target="_blank" class="btn-enquire">Enquire</a>
+          <button onclick="enquireProduct(this)" class="btn-enquire">Enquire</button>
         </div>
       </div>
 
@@ -2432,7 +2610,7 @@
         </div>
         <div class="product-card-footer">
           <div class="product-card-price">R42.00<small>Per Unit</small></div>
-          <a href="https://wa.me/27714520752?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20the%20Reflective%20Vest" target="_blank" class="btn-enquire">Enquire</a>
+          <button onclick="enquireProduct(this)" class="btn-enquire">Enquire</button>
         </div>
       </div>
 
@@ -2459,7 +2637,7 @@
         </div>
         <div class="product-card-footer">
           <div class="product-card-price">R42.00<small>Per Unit</small></div>
-          <a href="https://wa.me/27714520752?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20the%20Reflective%20Vest" target="_blank" class="btn-enquire">Enquire</a>
+          <button onclick="enquireProduct(this)" class="btn-enquire">Enquire</button>
         </div>
       </div>
 
@@ -2486,7 +2664,7 @@
         </div>
         <div class="product-card-footer">
           <div class="product-card-price">R42.00<small>Per Unit</small></div>
-          <a href="https://wa.me/27714520752?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20the%20Reflective%20Vest" target="_blank" class="btn-enquire">Enquire</a>
+          <button onclick="enquireProduct(this)" class="btn-enquire">Enquire</button>
         </div>
       </div>
 
@@ -2513,7 +2691,7 @@
         </div>
         <div class="product-card-footer">
           <div class="product-card-price">R42.00<small>Per Unit</small></div>
-          <a href="https://wa.me/27714520752?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20the%20Reflective%20Vest" target="_blank" class="btn-enquire">Enquire</a>
+          <button onclick="enquireProduct(this)" class="btn-enquire">Enquire</button>
         </div>
       </div>
 
@@ -2540,7 +2718,7 @@
         </div>
         <div class="product-card-footer">
           <div class="product-card-price">R42.00<small>Per Unit</small></div>
-          <a href="https://wa.me/27714520752?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20the%20Reflective%20Vest" target="_blank" class="btn-enquire">Enquire</a>
+          <button onclick="enquireProduct(this)" class="btn-enquire">Enquire</button>
         </div>
       </div>
 
@@ -2567,7 +2745,7 @@
         </div>
         <div class="product-card-footer">
           <div class="product-card-price">R42.00<small>Per Unit</small></div>
-          <a href="https://wa.me/27714520752?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20the%20Reflective%20Vest" target="_blank" class="btn-enquire">Enquire</a>
+          <button onclick="enquireProduct(this)" class="btn-enquire">Enquire</button>
         </div>
       </div>
 
@@ -2594,7 +2772,7 @@
         </div>
         <div class="product-card-footer">
           <div class="product-card-price">R42.00<small>Per Unit</small></div>
-          <a href="https://wa.me/27714520752?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20the%20Reflective%20Vest" target="_blank" class="btn-enquire">Enquire</a>
+          <button onclick="enquireProduct(this)" class="btn-enquire">Enquire</button>
         </div>
       </div>
 
@@ -2621,7 +2799,7 @@
         </div>
         <div class="product-card-footer">
           <div class="product-card-price">R42.00<small>Per Unit</small></div>
-          <a href="https://wa.me/27714520752?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20the%20Reflective%20Vest" target="_blank" class="btn-enquire">Enquire</a>
+          <button onclick="enquireProduct(this)" class="btn-enquire">Enquire</button>
         </div>
       </div>
 
@@ -2648,7 +2826,7 @@
         </div>
         <div class="product-card-footer">
           <div class="product-card-price">R42.00<small>Per Unit</small></div>
-          <a href="https://wa.me/27714520752?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20the%20Reflective%20Vest" target="_blank" class="btn-enquire">Enquire</a>
+          <button onclick="enquireProduct(this)" class="btn-enquire">Enquire</button>
         </div>
       </div>
 
@@ -2684,7 +2862,7 @@
         </div>
         <div class="product-card-footer">
           <div class="product-card-price" style="font-size:1rem;padding-top:4px;">POA<small>Contact for Price</small></div>
-          <a href="https://wa.me/27714520752?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20the%20Hi-Viz%20Orange%20Rain%20Jacket" target="_blank" class="btn-enquire">Enquire</a>
+          <button onclick="enquireProduct(this)" class="btn-enquire">Enquire</button>
         </div>
       </div>
 
@@ -2982,6 +3160,18 @@
 
   function closeErrorPopup() {
     document.getElementById('errorPopup').style.display = 'none';
+  }
+
+  // Build WhatsApp enquire links from product name
+  function enquireProduct(el) {
+    const card = el.closest('.product-card');
+    const name = card ? (card.dataset.name || 'your product') : 'your product';
+    const codeEl = card ? card.querySelector('.product-card-code') : null;
+    const code = codeEl ? codeEl.textContent.replace('Code:', '').trim() : '';
+    const msg = code
+      ? 'Hi, I would like to enquire about: ' + name + ' (Code: ' + code + ')'
+      : 'Hi, I would like to enquire about: ' + name;
+    window.open('https://wa.me/27714520752?text=' + encodeURIComponent(msg), '_blank');
   }
 
   // ===== PRODUCT SHOP SYSTEM =====
